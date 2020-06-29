@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 import org.apache.commons.math.stat.descriptive.moment.Variance;
 
 public class ConHashTest {
@@ -43,12 +44,10 @@ public class ConHashTest {
         for (int i = 1; i <= 10; i++) {
             System.out.println(IP_PREFIX + i + "节点记录条数：" + map.get("192.168.1." + i));
             BigDecimal data = new BigDecimal(map.get("192.168.1." + i));
-            BigDecimal base = new BigDecimal(100000);
-            BigDecimal result = data.divide(base);
-            array[i-1] = result.doubleValue();
+            array[i-1] = data.doubleValue();
         }
-        Variance variance = new Variance();//方差
-        System.out.println(variance.evaluate(array));
+        StandardDeviation StandardDeviation =new StandardDeviation();//标准差
+        System.out.println(StandardDeviation.evaluate(array));
     }
 
 }
